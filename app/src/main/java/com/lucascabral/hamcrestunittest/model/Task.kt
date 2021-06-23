@@ -5,9 +5,6 @@ data class Task(
     var description: String = "",
     var isCompleted: Boolean = false
 ) {
-    val titleForList: String
-    get() = if (title.isNotEmpty()) title else description
-
     val isActive
     get() = !isCompleted
 
