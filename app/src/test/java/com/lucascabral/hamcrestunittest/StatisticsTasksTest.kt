@@ -8,7 +8,7 @@ import org.junit.Test
 class StatisticsTasksTest {
 
     @Test
-    fun `test when getActiveAndCompletedStats returns no completed tasks`() {
+    fun `test when getActiveAndCompletedStats returns uncompleted tasks`() {
         val tasksList = listOf(
             Task("title1", "desc1", isCompleted = false),
             Task("title2", "desc2", isCompleted = false),
@@ -19,5 +19,19 @@ class StatisticsTasksTest {
 
         assertThat(result.completedTasksPercent, `is` (0f))
         assertThat(result.activeTasksPercent, `is` (100f))
+    }
+
+    @Test
+    fun `test when getActiveAndCompletedStats returns completed tasks`() {
+        val tasksList = listOf(
+            Task("title1", "desc1", isCompleted = true),
+            Task("title2", "desc2", isCompleted = true),
+            Task("title3", "desc3", isCompleted = true)
+        )
+
+        val result = getActiveAndCompletedStats(tasksList)
+
+        assertThat(result.completedTasksPercent, `is` (100f))
+        assertThat(result.activeTasksPercent, `is` (0f))
     }
 }
