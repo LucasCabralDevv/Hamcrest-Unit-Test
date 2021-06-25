@@ -50,4 +50,22 @@ class StatisticsTasksTest {
         assertThat(result.completedTasksPercent, `is` (60f))
         assertThat(result.activeTasksPercent, `is` (40f))
     }
+
+    @Test
+    fun `test when getActiveAndCompletedStats returns null tasks`() {
+
+        val result = getActiveAndCompletedStats(null)
+
+        assertThat(result.completedTasksPercent, `is` (0f))
+        assertThat(result.activeTasksPercent, `is` (0f))
+    }
+
+    @Test
+    fun `test when getActiveAndCompletedStats returns empty tasks`() {
+
+        val result = getActiveAndCompletedStats(emptyList())
+
+        assertThat(result.completedTasksPercent, `is` (0f))
+        assertThat(result.activeTasksPercent, `is` (0f))
+    }
 }
